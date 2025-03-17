@@ -1,6 +1,11 @@
 Open cmd  and type
   --> git clone https://github.com/Iyabah/web2.1.git
 
+then 
+ --> cd web2.1 
+
+open your editonr and 
+
 Then  install dependencies
 
  --> npm install
