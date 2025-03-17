@@ -1,0 +1,15 @@
+07/03
+
+
+***************
+created project 
+*************
+Bootstrap for stylings 
+
+09/03
+*******
+1- edits on the homepage
+2- Imported a bootstrap template and accorded t to project.
+3- runs with the project correctly.
+4-###### Content edits remianing #####
+5- Translation script also 

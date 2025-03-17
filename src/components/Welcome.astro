@@ -1,0 +1,462 @@
+---
+// Import components
+import LanguageSwitch from '../components/LanguageSwitch.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Define language and translation options
+const { lang = 'en' } = Astro.params;
+const isEnglish = lang === 'en';
+
+// Translations
+const translations = {
+  en: {
+    siteName: "IYA",
+    nav: {
+      home: "Home",
+      services: "Services",
+      about: "About",
+      contact: "Contact"
+    },
+    hero: {
+      title: "Luxury Home Spray Painting",
+      subtitle: "Sustainable Style for Modern Living",
+      cta: "Get Started"
+    },
+    about: {
+      title: "Why replace, when you can reimagine?",
+      subtitle: "",
+      details: "",
+      text1: "At [Your Business Name], we specialise in luxury spray painting services that breathe new life into your home, all while protecting the planet. Whether it's a tired kitchen, worn wardrobes, or dated interior doors – we transform your existing spaces with a flawless, factory-quality finish that feels brand new.",
+      text2: "We believe your home deserves more than ordinary. That's why we use premium, eco-friendly paints and coatings that are low in VOCs (Volatile Organic Compounds), safe for your family, and better for the environment – without compromising on durability or style."
+    },
+    whyUs: {
+      title: "Why Us",
+      reasons: [
+        {
+          number: "01",
+          title: "Bespoke colour matching with an endless palette of luxurious tones.",
+          description: ""
+        },
+        {
+          number: "02",
+          title: "Smooth, seamless finishes that rival brand-new installations.",
+          description: ""
+        },
+        {
+          number: "03",
+          title: "Long-lasting, hard-wearing coatings designed to stand the test of time.",
+          description: ""
+        },
+        {
+          number: "04",
+          title: "Minimal disruption to your home – clean, quiet, and efficient.",
+          description: ""
+        },
+        {
+          number: "05",
+          title: "A conscious, sustainable alternative to wasteful renovations.",
+          description: ""
+        },
+        {
+          number: "06",
+          title: "Premium materials and expert craftsmanship for exceptional results.",
+          description: ""
+        }
+      ]
+    },
+    cta: {
+      title: "Ready to fall back in love with your home? ",
+      text: "Contact us today for your personalised, no-obligation quote, and discover the effortless beauty of professional spray painting.",
+      button: "Contact us"
+    },
+    services: {
+      title: "Services",
+      subtitle: "Services we offer",
+      items: [
+      {
+          icon: "bi-paint-bucket",
+          title: "Web Design",
+          description: "Professional web design services tailored to your business needs."
+        },
+        {
+          icon: "bi-check-square",
+          title: "Web Development",
+          description: "Custom development solutions to bring your ideas to life."
+        }
+      ]
+    },
+    contact: {
+      title: "Contact",
+      subtitle: "Get in touch with us",
+      address: "A108 Adam Street, New York, NY 535022",
+      phone: "+1 000 000 000",
+      email: "info@example.com",
+      form: {
+        name: "Your Name",
+        email: "Your Email",
+        subject: "Subject",
+        message: "Message",
+        send: "Send Message"
+      }
+    }
+  },
+  cy: {
+    siteName: "IYA",
+    nav: {
+      home: "Hafan",
+      services: "Gwasanaethau",
+      about: "Amdanom",
+      contact: "Cysylltu"
+    },
+    hero: {
+      title: "Paentio Chwistrellu Cartref Moethus",
+      subtitle: "Arddull Gynaliadwy ar gyfer Byw Modern",
+      cta: "Dechrau"
+    },
+    about: {
+      title: "Pam ailosod, pan allwch chi ail-ddychmygu?",
+      subtitle: "Ein Gwasanaethau",
+      details: "Manylion Pellach",
+      text1: "Yn [Eich Enw Busnes], rydym yn arbenigo mewn gwasanaethau paentio chwistrellu moethus sy'n rhoi bywyd newydd i'ch cartref, tra'n gwarchod y blaned.",
+      text2: "Rydym yn credu bod eich cartref yn haeddu mwy na'r cyffredin. Dyna pam rydym yn defnyddio paentiau a gorchuddion premiwm, eco-gyfeillgar."
+    },
+    whyUs: {
+      title: "Pam Ni",
+      reasons: [
+        {
+          number: "01",
+          title: "Paru lliwiau pwrpasol gyda phalét diderfyn o donau moethus.",
+          description: "Dewis eang o liwiau"
+        },
+        {
+          number: "02",
+          title: "Gorffeniadau llyfn, di-dor sy'n cystadlu â gosodiadau newydd sbon.",
+          description: "Ansawdd uchel"
+        },
+        {
+          number: "03",
+          title: "Gorchuddion hirhoedlog, gwydn wedi'u cynllunio i wrthsefyll prawf amser.",
+          description: "Hirhoedlog"
+        },
+        {
+          number: "04",
+          title: "Tarfu minimol ar eich cartref - glân, tawel ac effeithlon.",
+          description: "Gwasanaeth effeithlon"
+        },
+        {
+          number: "05",
+          title: "Dewis cynaliadwy, ymwybodol yn lle adnewyddiadau gwastraffus.",
+          description: "Eco-gyfeillgar"
+        },
+        {
+          number: "06",
+          title: "Deunyddiau premiwm a chrefftwaith arbenigol ar gyfer canlyniadau eithriadol.",
+          description: "Ansawdd premiwm"
+        }
+      ]
+    },
+    cta: {
+      title: "Yn barod i ailgydio mewn cariad â'ch cartref?",
+      text: "Cysylltwch â ni heddiw am eich dyfynbris personol, dim rhwymedigaeth, a darganfyddwch harddwch di-drafferth paentio proffesiynol.",
+      button: "Cysylltwch â ni"
+    },
+    services: {
+      title: "Gwasanaethau",
+      subtitle: "Gwasanaethau rydym yn eu cynnig",
+      items: [
+        {
+          icon: "bi-paint-bucket",
+          title: "Dylunio Gwe",
+          description: "Gwasanaethau dylunio gwe proffesiynol wedi'u teilwra i anghenion eich busnes."
+        },
+        {
+          icon: "bi-check-square",
+          title: "Datblygu Gwe",
+          description: "Datrysiadau datblygu pwrpasol i roi bywyd i'ch syniadau."
+        }
+      ]
+    },
+    contact: {
+      title: "Cysylltu",
+      subtitle: "Cysylltwch â ni",
+      address: "A108 Stryd Adam, Efrog Newydd, NY 535022",
+      phone: "+1 000 000 000",
+      email: "info@example.com",
+      form: {
+        name: "Eich Enw",
+        email: "Eich E-bost",
+        subject: "Pwnc",
+        message: "Neges",
+        send: "Anfon Neges"
+      }
+    }
+  }
+};
+
+// Choose language
+const t = isEnglish ? translations.en : translations.cy;
+---
+
+<!DOCTYPE html>
+<html lang={isEnglish ? "en" : "cy"}>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{t.siteName} - {t.nav.home}</title>
+  <meta name="description" content="Professional web design and development services">
+  <meta name="keywords" content="web design, development, responsive, modern">
+
+   
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+  <!-- Header -->
+  <Header siteName={t.siteName}
+   navItems={t.nav} />
+
+  <!-- Language Switcher -->
+  <LanguageSwitch currentLang={isEnglish ? "en" : "cy"} />
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+      <img src="/assets/img/dim1.jpg" alt="" data-aos="fade-in">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>{t.hero.title}</h2>
+            <p>{t.hero.subtitle}</p>
+            <a href="#about" class="btn-get-started">{t.hero.cta}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">{t.about.title}</span>
+
+        <h2>{t.about.title}</h2>
+        <p>{t.about.subtitle}</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3>{t.about.details}</h3>
+            <img src="/assets/img/dim3.jpg" class="img-fluid rounded-4 mb-4" alt="">
+            <p>{t.about.text1}</p>
+            <p>{t.about.text2}</p>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="content ps-0 ps-lg-5">
+              <!--ul>
+                <li><i class="bi bi-check-circle-fill"></i> <span>Responsive web design that looks great on all devices</span></li>
+                <li><i class="bi bi-check-circle-fill"></i> <span>Modern development practices using the latest technologies</span></li>
+                <li><i class="bi bi-check-circle-fill"></i> <span>Search engine optimization to help your website rank higher</span></li>
+              </ul-->
+              <p>
+                From elegant matt finishes to high-gloss shine, we tailor every detail to your vision, 
+                adding a sophisticated edge to kitchens, bedrooms, and living spaces alike.
+              </p>
+              <p>This is home transformation, redefined – where luxury meets sustainability, and your dream interior becomes reality.
+              </p>
+
+
+              <div class="position-relative mt-4">
+                <img src="/assets/img/dim1.jpg" class="img-fluid rounded-4" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+    <!-- Why Us Section -->
+    <section id="why-us" class="why-us section text-center ">
+      <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">{t.whyUs.title}</span>
+      <h2>{t.whyUs.title}</h2>
+      <div class="container">
+        <div class="row no-gutters">
+          {t.whyUs.reasons.map((reason, index) => (
+            <div class="col-lg-4 col-md-6 card" data-aos="fade-up" data-aos-delay={100 * (index + 1)}>
+              <span>{reason.number}</span>
+              <h4>{reason.title}</h4>
+              <p>{reason.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+      <img src="/assets/img/dim3.jpg" alt="">
+
+      <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+            <div class="text-center">
+              <h3>{t.cta.title}</h3>
+              <p>{t.cta.text}</p>
+              <a class="cta-btn" href="#contact">{t.cta.button}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">{t.services.title}</span>
+        <h2>{t.services.title}</h2>
+        <p>{t.services.subtitle}</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          {t.services.items.map((service, index) => (
+            <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay={100 * (index + 1)}>
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class={`bi ${service.icon}`}></i></div>
+                <div>
+                  <h4 class="title"><a href="#" class="stretched-link">{service.title}</a></h4>
+                  <p class="description">{service.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">{t.contact.title}</span>
+        <h2>{t.contact.title}</h2>
+        <p>{t.contact.subtitle}</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-5">
+            <div class="col-lg-4">
+              <div class="info-item d-flex align-items-center">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>{isEnglish ? "Address" : "Cyfeiriad"}</h3>
+                  <p>{t.contact.address}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="info-item d-flex align-items-center">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>{isEnglish ? "Call Us" : "Ffoniwch Ni"}</h3>
+                  <p>{t.contact.phone}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="info-item d-flex align-items-center">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>{isEnglish ? "Email Us" : "E-bostiwch Ni"}</h3>
+                  <p>{t.contact.email}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form action="/api/contact/" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder={t.contact.form.name} required>
+            </div>
+
+            <div class="col-md-6">
+              <input type="email" class="form-control" name="email" placeholder={t.contact.form.email} required>
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="subject" placeholder={t.contact.form.subject} required>
+            </div>
+
+            <div class="col-md-12">
+              <textarea class="form-control" name="message" rows="6" placeholder={t.contact.form.message} required></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <div class="loading">{isEnglish ? "Loading" : "Llwytho"}</div>
+              <div class="error-message"></div>
+              <div class="sent-message">{isEnglish ? "Your message has been sent. Thank you!" : "Mae eich neges wedi'i hanfon. Diolch!"}</div>
+
+              <button type="submit">{t.contact.form.send}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <Footer siteName={t.siteName} translation={t} isEnglish={isEnglish} />
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+   
+  
+    <!-- Vendor JS Files -->
+    <script is:inline src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script is:inline src="/assets/vendor/aos/aos.js"></script>
+    <script is:inline src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script is:inline src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script is:inline src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script is:inline src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  
+    <!-- Main JS File -->
+    <script is:inline src="/assets/js/main.js"></script>
+
+</body>
+</html>

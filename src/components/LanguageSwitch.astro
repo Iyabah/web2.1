@@ -1,0 +1,53 @@
+---
+// Props for the language switcher
+const { currentLang } = Astro.props;
+---
+
+<div class="language-switch">
+  <a href={currentLang === "en" ? "/cy/" : "/en/"} class="lang-btn">
+    <span>{currentLang === "en" ? "CY" : "EN"}</span>
+  </a>
+</div>
+
+<style>
+  .language-switch {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .lang-btn:hover {
+    background-color: #0ea2bd;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .language-switch {
+      top: 70px;
+      right: 15px;
+    }
+    
+    .lang-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
